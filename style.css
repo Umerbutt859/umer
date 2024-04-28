@@ -1,0 +1,139 @@
+/* Basic Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Light gray background */
+  }
+  
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #f0193f; /* Red color on hover */
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Header Styles */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding shadow for depth */
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #007bff; /* Changing color on hover */
+  }
+  
+  .logo {
+    width: 100px; /* Adjusting the logo size */
+    height: auto; /* Ensuring aspect ratio is maintained */
+  }
+  
+  /* .logo {
+    width: 150px;
+  } */
+  
+  nav {
+    display: flex;
+    list-style: none;
+  }
+  
+  /* Main Styles */
+  main {
+    padding: 50px 20px; /* Added padding to the sides */
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 0 20px; /* Added padding to the sides */
+  }
+  
+  h1 {
+    font-size: 2.5em; /* Reduced font size */
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1.1em; /* Reduced font size */
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  button {
+    background-color: #f0193f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+  }
+  
+  .features-heading {
+    text-align: center;
+    width: 100%; /* Full width for the heading */
+  }
+  
+  .feature {
+    text-align: center;
+    width: 30%; /* Adjusted width for better spacing */
+    margin-bottom: 30px;
+    padding: 20px; /* Added padding */
+    border-radius: 10px; /* Added border-radius for a card-like appearance */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added box shadow for depth */
+  }
+  
+  .feature img {
+    margin-bottom: 15px;
+    max-width: 100px; /* Adjusted max-width for consistency */
+  }
+  
+  h3 {
+    font-size: 1.3em; /* Adjusted font size */
+  }
+  
+  /* Footer Styles */
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  footer ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  footer ul li {
+    display: inline;
+    margin: 0 10px;
+  }
+  
+  footer ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
