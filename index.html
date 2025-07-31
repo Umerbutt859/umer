@@ -1,58 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rent Car</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent-Teacher Portal | EduConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="login-container">
+                <h2>Login to EduConnect</h2>
+                <div class="login-tabs">
+                    <button class="tab-btn active" onclick="showTab('parent')">Parent Login</button>
+                    <button class="tab-btn" onclick="showTab('teacher')">Teacher Login</button>
+                </div>
+                
+                <form id="parentLogin" class="login-form active">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Parent ID / Email" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login as Parent</button>
+                </form>
+                
+                <form id="teacherLogin" class="login-form">
+                    <div class="input-group">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <input type="text" placeholder="Teacher ID / Email" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login as Teacher</button>
+                </form>
+                
+                <div class="login-footer">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <p>Need help? <a href="#contact">Contact Support</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Features</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-        </nav>
-        <img src="./images/car-wash.png" alt="Your Company Logo" class="logo">
+        <div class="header-content">
+            <div class="logo-section">
+                <i class="fas fa-graduation-cap logo-icon"></i>
+                <h1 class="logo-text">EduConnect</h1>
+            </div>
+            <nav class="main-nav">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <button class="login-trigger">Login</button>
+            </nav>
+        </div>
     </header>
-    
 
-  <main>
-    <section class="hero">
-      <h1>Rent Car Website</h1>
-      <p>Unlock your journey with our hassle-free car rental services.</p>
-      <button>Get Started</button>
-    </section>
+    <!-- Dashboard (Hidden by default) -->
+    <div id="dashboard" class="dashboard hidden">
+        <div class="dashboard-header">
+            <h2 id="welcomeMessage">Welcome to Your Dashboard</h2>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+        
+        <div class="dashboard-content">
+            <!-- Parent Dashboard -->
+            <div id="parentDashboard" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Academic Progress</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="progress-item">
+                                <span>Mathematics</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                                <span class="grade">A-</span>
+                            </div>
+                            <div class="progress-item">
+                                <span>Science</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 92%"></div>
+                                </div>
+                                <span class="grade">A</span>
+                            </div>
+                            <div class="progress-item">
+                                <span>English</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 78%"></div>
+                                </div>
+                                <span class="grade">B+</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>Upcoming Events</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="event-item">
+                                <div class="event-date">Dec 15</div>
+                                <div class="event-info">
+                                    <h4>Parent-Teacher Conference</h4>
+                                    <p>Mathematics Department</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">Dec 20</div>
+                                <div class="event-info">
+                                    <h4>Science Fair</h4>
+                                    <p>School Auditorium</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-comments"></i>
+                            <h3>Messages</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="message-item">
+                                <div class="message-sender">Ms. Johnson</div>
+                                <div class="message-preview">Great progress in mathematics this week...</div>
+                                <div class="message-time">2 hours ago</div>
+                            </div>
+                            <div class="message-item">
+                                <div class="message-sender">Mr. Smith</div>
+                                <div class="message-preview">Science project submission reminder...</div>
+                                <div class="message-time">1 day ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-clipboard-check"></i>
+                            <h3>Attendance</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="attendance-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">96%</span>
+                                    <span class="stat-label">This Month</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">18/19</span>
+                                    <span class="stat-label">Days Present</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Teacher Dashboard -->
+            <div id="teacherDashboard" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-users"></i>
+                            <h3>My Classes</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="class-item">
+                                <span class="class-name">Mathematics Grade 10A</span>
+                                <span class="student-count">28 students</span>
+                            </div>
+                            <div class="class-item">
+                                <span class="class-name">Mathematics Grade 10B</span>
+                                <span class="student-count">26 students</span>
+                            </div>
+                            <div class="class-item">
+                                <span class="class-name">Advanced Algebra</span>
+                                <span class="student-count">15 students</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-tasks"></i>
+                            <h3>Assignments to Grade</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="assignment-item">
+                                <span class="assignment-name">Algebra Quiz #3</span>
+                                <span class="pending-count">12 pending</span>
+                            </div>
+                            <div class="assignment-item">
+                                <span class="assignment-name">Geometry Project</span>
+                                <span class="pending-count">8 pending</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-bell"></i>
+                            <h3>Notifications</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="notification-item">
+                                <span class="notification-text">Parent meeting scheduled for tomorrow</span>
+                                <span class="notification-time">30 min ago</span>
+                            </div>
+                            <div class="notification-item">
+                                <span class="notification-text">New assignment submission received</span>
+                                <span class="notification-time">2 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar"></i>
+                            <h3>Class Performance</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="performance-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">87%</span>
+                                    <span class="stat-label">Average Grade</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">94%</span>
+                                    <span class="stat-label">Attendance Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <section class="features">
-        <h2 class="features-heading">Our Key Features</h2>
-        <div class="feature">
-          <img src="./images/booking.png" alt="Feature 1 Icon">
-          <h3>Feature 1</h3>
-          <p>Our booking feature offers a seamless experience for both users and administrators. Users can easily schedule appointments, reserve spots for events, or book services directly through our platform</p>
-        </div>
-        <div class="feature">
-          <img src="./images/monitor.png" alt="Feature 2 Icon">
-          <h3>Feature 2</h3>
-          <p>Our monitoring feature provides comprehensive insights and analytics to keep track of various aspects of your website's performance. From traffic statistics to user engagement metrics,</p>
-        </div>
-        <div class="feature">
-          <img src="./images/security.png" alt="Feature 3 Icon">
-          <h3>Feature 3</h3>
-          <p>Security is paramount, and our robust security feature is designed to safeguard your website and user data from potential threats. Through advanced encryption protocols, regular security audits, and proactive monitoring</p>
-        </div>
-      </section>
-      
-  </main>
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Connect. Communicate. Collaborate.</h1>
+                <p>Bridging the gap between parents and teachers for better student outcomes</p>
+                <div class="hero-buttons">
+                    <button class="cta-button login-trigger">Get Started</button>
+                    <button class="cta-button secondary" onclick="scrollToSection('features')">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-users hero-icon"></i>
+            </div>
+        </section>
 
-  <footer>
-    <p>&copy; 2024 Your Company Name</p>
-    <ul>
-      <li><a href="#">Social Media 1</a></li>
-      <li><a href="#">Social Media 2</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </footer>
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <h2>Powerful Features for Better Communication</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-time Progress Tracking</h3>
+                    <p>Monitor student academic progress with detailed analytics and grade tracking across all subjects.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Instant Messaging</h3>
+                    <p>Direct communication between parents and teachers with secure messaging and file sharing capabilities.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Event Management</h3>
+                    <p>Schedule and manage parent-teacher meetings, school events, and important announcements.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>Assignment Tracking</h3>
+                    <p>Keep track of homework, projects, and assignments with due dates and submission status.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3>Attendance Monitoring</h3>
+                    <p>Real-time attendance tracking with automated notifications for absences and tardiness.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Bank-level security ensures all student data and communications remain private and protected.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About EduConnect</h2>
+                    <p>EduConnect is a comprehensive parent-teacher portal designed to enhance communication and collaboration in the educational journey. Our platform brings together parents, teachers, and students in a secure, user-friendly environment.</p>
+                    <p>With over 10 years of experience in educational technology, we understand the importance of keeping parents informed and engaged in their child's academic progress.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-number">10,000+</span>
+                            <span class="stat-label">Active Users</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Schools</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">99.9%</span>
+                            <span class="stat-label">Uptime</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-school about-icon"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EduConnect</h3>
+                <p>Connecting education communities for better student outcomes.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> support@educonnect.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 EduConnect. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
